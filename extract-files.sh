@@ -78,6 +78,7 @@ function blob_fixup() {
             sed -ni "/android.hardware.biometrics.fingerprint/{x;s/hal format/hal override=\"true\" format/;x};x;1!p;\${x;p}" "${2}"
             ;;
         product/app/PowerOffAlarm/PowerOffAlarm.apk)
+            [ "$2" = "" ] && return 0
             apktool_patch "${2}" "${MY_DIR}/blob-patches/PowerOffAlarm.patch" -s
             ;;
         product/etc/sysconfig/com.android.hotwordenrollment.common.util.xml)
@@ -85,6 +86,7 @@ function blob_fixup() {
             sed -i "s/\/my_product/\/product/" "${2}"
             ;;
         system_ext/framework/oplus-ims-ext.jar)
+            [ "$2" = "" ] && return 0
             apktool_patch "${2}" "${MY_DIR}/blob-patches/oplus-ims-ext.patch" -r
             ;;
         system_ext/lib/libwfdservice.so)
@@ -117,7 +119,7 @@ function blob_fixup() {
             ;;
         vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so)
             [ "$2" = "" ] && return 0
-            "${SIGSCAN}" -p "1F 0A 00 94" -P "1F 20 03 D5" -f "${2}"
+            "${SIGSCAN}" -p "53 0A 00 94" -P "1F 20 03 D5" -f "${2}"
             ;;
         *)
             return 1
