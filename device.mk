@@ -45,9 +45,16 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.usb.default \
     liba2dpoffload \
+    libbatterylistener \
+    libcomprcapture \
+    libexthwplugin \
+    libhdmiedid \
+    libhfp \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
+    libsndmonitor \
+    libspkrprot \
     libvolumelistener
 
 PRODUCT_COPY_FILES += \
@@ -134,9 +141,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@3.0-impl-qti-display \
     android.hardware.graphics.mapper@4.0-impl-qti-display \
-    gralloc.qcom \
+    gralloc.lito \
     libdisplayconfig.qti \
     libdisplayconfig.system.qti \
+    libgrallocutils.vendor \
     libqdMetaData \
     libqdMetaData.system \
     libsdmcore \
