@@ -18,10 +18,10 @@ KERNEL_DIR="${SRC_DIR}/kernel/oneplus/sm7250";
 VENDOR_DIR="${SRC_DIR}/vendor/oneplus/avicii";
 APPS_DIR="${SRC_DIR}/vendor/oneplus/apps";
 CLANG_TAR="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-${CLANG_VERSION}.tar.gz";
-FW_REPO="https://bitbucket.org/sreeshankark/android_vendor_oneplus_firmware";
+FW_REPO="https://github.com/TAHERHAKIM/android_firmware_oneplus_avicii";
 KERNEL_REPO="https://github.com/TAHERHAKIM/kernel_oneplus_avicii";
-VENDOR_REPO="https://bitbucket.org/sreeshankark/android_vendor_oneplus_avicii";
-APPS_REPO="https://bitbucket.org/sreeshankark/android_vendor_oneplus_apps";
+VENDOR_REPO="https://github.com/TAHERHAKIM/android_vendor_oneplus_avicii_ooscam";
+APPS_REPO="https://github.com/TAHERHAKIM/oplus_camera_avicii";
 
 # Dependencies
 DEPENDENCIES=( "FW" "KERNEL" "VENDOR" "APPS" );
