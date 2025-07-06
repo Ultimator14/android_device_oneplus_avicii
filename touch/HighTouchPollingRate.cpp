@@ -1,24 +1,14 @@
 /*
- * Copyright (C) 2022 The LineageOS Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * SPDX-FileCopyrightText: 2025 The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
  */
 
-#define LOG_TAG "vendor.lineage.touch@1.0-service.oplus"
+#define LOG_TAG "vendor.lineage.touch-service.oplus"
 
 #include "HighTouchPollingRate.h"
 
 #include <android-base/file.h>
+#include <android-base/logging.h>
 
 using ::android::base::ReadFileToString;
 using ::android::base::WriteStringToFile;
@@ -29,23 +19,32 @@ constexpr const char* kGameSwitchEnablePath = "/proc/touchpanel/game_switch_enab
 
 }  // anonymous namespace
 
+namespace aidl {
 namespace vendor {
 namespace lineage {
 namespace touch {
-namespace V1_0 {
-namespace implementation {
 
-Return<bool> HighTouchPollingRate::isEnabled() {
+ndk::ScopedAStatus HighTouchPollingRate::getEnabled(bool* _aidl_return) {
     std::string value;
-    return ReadFileToString(kGameSwitchEnablePath, &value) && value[0] != '0';
+    if (!ReadFileToString(kGameSwitchEnablePath, &value)) {
+        LOG(ERROR) << "Failed to read current HighTouchPollingRate state";
+        return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
+    }
+
+    *_aidl_return = value[0] != '0';
+    return ndk::ScopedAStatus::ok();
 }
 
-Return<bool> HighTouchPollingRate::setEnabled(bool enabled) {
-    return WriteStringToFile(enabled ? "1" : "0", kGameSwitchEnablePath, true);
+ndk::ScopedAStatus HighTouchPollingRate::setEnabled(bool enable) {
+    if (!WriteStringToFile(enable ? "1" : "0", kGameSwitchEnablePath, true)) {
+        LOG(ERROR) << "Failed to write HighTouchPollingRate state";
+        return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
+    }
+
+    return ndk::ScopedAStatus::ok();
 }
 
-}  // namespace implementation
-}  // namespace V1_0
 }  // namespace touch
 }  // namespace lineage
 }  // namespace vendor
+}  // namespace aidl

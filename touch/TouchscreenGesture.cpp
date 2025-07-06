@@ -1,20 +1,9 @@
 /*
- * Copyright (C) 2022 The LineageOS Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * SPDX-FileCopyrightText: 2025 The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
  */
 
-#define LOG_TAG "vendor.lineage.touch@1.0-service.oplus"
+#define LOG_TAG "vendor.lineage.touch-service.oplus"
 
 #include <android-base/file.h>
 #include <android-base/strings.h>
@@ -31,13 +20,12 @@ constexpr const char* kGestureEnableIndepPath = "/proc/touchpanel/double_tap_ena
 
 }  // anonymous namespace
 
+namespace aidl {
 namespace vendor {
 namespace lineage {
 namespace touch {
-namespace V1_0 {
-namespace implementation {
 
-Return<void> TouchscreenGesture::getSupportedGestures(getSupportedGestures_cb resultCb) {
+ndk::ScopedAStatus TouchscreenGesture::getSupportedGestures(std::vector<Gesture>* _aidl_return) {
     std::vector<Gesture> gestures;
 
     for (const auto& [id, name] : kGestureNames) {
@@ -46,17 +34,17 @@ Return<void> TouchscreenGesture::getSupportedGestures(getSupportedGestures_cb re
         }
     }
 
-    resultCb(gestures);
-
-    return Void();
+    *_aidl_return = gestures;
+    return ndk::ScopedAStatus::ok();
 }
 
-Return<bool> TouchscreenGesture::setGestureEnabled(const Gesture& gesture, bool enabled) {
-    std::string tmp;
+ndk::ScopedAStatus TouchscreenGesture::setGestureEnabled(const Gesture& gesture, bool enabled) {
     int contents = 0;
 
-    if (ReadFileToString(kGestureEnableIndepPath, &tmp)) {
+    if (std::string tmp; ReadFileToString(kGestureEnableIndepPath, &tmp)) {
         contents = std::stoi(Trim(tmp), nullptr, 16);
+    } else {
+        return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
     }
 
     if (enabled) {
@@ -65,11 +53,14 @@ Return<bool> TouchscreenGesture::setGestureEnabled(const Gesture& gesture, bool 
         contents &= ~(1 << (gesture.keycode - kGestureStartKey));
     }
 
-    return WriteStringToFile(std::to_string(contents), kGestureEnableIndepPath, true);
+    if (!WriteStringToFile(std::to_string(contents), kGestureEnableIndepPath, true)) {
+        return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
+    }
+
+    return ndk::ScopedAStatus::ok();
 }
 
-}  // namespace implementation
-}  // namespace V1_0
 }  // namespace touch
 }  // namespace lineage
 }  // namespace vendor
+}  // namespace aidl
