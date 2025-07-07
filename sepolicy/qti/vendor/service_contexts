@@ -1,10 +1,13 @@
 # Camera
+vendor.oplus.hardware.camera_rfi.ICameraRfiService/default               u:object_r:hal_camera_service:s0
 vendor.oplus.hardware.cameraextension.ICameraExtensionService/default    u:object_r:hal_camera_service:s0
 vendor.oplus.hardware.cammidasservice.IMIDASService/default              u:object_r:hal_oplus_cammidasservice_aidl_service:s0
 vendor.oplus.hardware.sendextcamcmd.ISendExtCamCmdService/default        u:object_r:hal_camera_service:s0
 
+# CommonDcs
+vendor.oplus.hardware.commondcs.ICommonDcsAidlHalService/default    u:object_r:hal_oplus_commondcs_aidl_service:s0
+
 # Fingerprint
-vendor.oplus.hardware.commondcs.ICommonDcsAidlHalService/default    u:object_r:hal_fingerprint_service:s0
 vendor.oplus.hardware.olc2.IOplusLogCore/default                    u:object_r:hal_fingerprint_service:s0
 
 # OEM Services
@@ -14,7 +17,7 @@ OplusResourceManagerService         u:object_r:oem_service:s0
 ParamService                        u:object_r:oem_service:s0
 
 # OSENSE
-vendor.oplus.hardware.osense.client.IOsenseAidlHalReporter/default    u:object_r:fwk_osense_aidl_service:s0
+vendor.oplus.hardware.osense.client.IOsenseAidlHalReporter/default    u:object_r:hal_oplus_osense_aidl_service:s0
 
 # Performance
 vendor.oplus.hardware.performance.IPerformance/default    u:object_r:hal_oplus_performance_aidl_service:s0
@@ -32,3 +35,6 @@ vendor.oplus.hardware.radio.IRadioStable/OplusRadio1                 u:object_r:
 
 # Touch
 vendor.oplus.hardware.touch.IOplusTouch/default    u:object_r:hal_oplus_touch_aidl_service:s0
+
+# URCC
+vendor.oplus.hardware.urcc.IUrcc/default    u:object_r:hal_oplus_urcc_aidl_service:s0

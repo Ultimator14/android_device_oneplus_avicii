@@ -1,5 +1,11 @@
+# Audio
+sys.oplus_ftm_mode    u:object_r:exported_system_prop:s0
+
 # Autotest
 persist.sys.oplus.autotest.monkeyRunning    u:object_r:exported_system_prop:s0
+
+# Bluetooth
+persist.sys.bt.a2dp.pendingtime    u:object_r:exported_system_prop:s0
 
 # Camera
 NA                                     u:object_r:exported_system_prop:s0
@@ -30,11 +36,13 @@ ro.oplus.display.                  u:object_r:exported_system_prop:s0
 
 # Engineering
 ro.oplus.image.my_engineering.type    u:object_r:exported_system_prop:s0
+ro.sys.engineering.pre                u:object_r:exported_system_prop:s0
 
 # Fingerprint
 oplus.fingerprint.    u:object_r:system_fingerprint_prop:s0
 oplus.goodix.fp       u:object_r:system_fingerprint_prop:s0
 oplus.optical.        u:object_r:system_fingerprint_prop:s0
+persist.sys.fp.       u:object_r:system_fingerprint_prop:s0
 
 # Logging
 persist.al.cfr.loglevel             u:object_r:exported_system_prop:s0
@@ -43,6 +51,9 @@ persist.camera.OverrideLogLevels    u:object_r:exported_system_prop:s0
 persist.sys.assert.panic            u:object_r:exported_system_prop:s0
 persist.sys.camera.log.scene        u:object_r:exported_system_prop:s0
 persist.sys.debuglog.config         u:object_r:exported_system_prop:s0
+persist.sys.log.ae                  u:object_r:exported_system_prop:s0
+persist.sys.log.af                  u:object_r:exported_system_prop:s0
+persist.sys.log.awb                 u:object_r:exported_system_prop:s0
 persist.sys.log.                    u:object_r:exported_system_prop:s0
 
 # Modem
@@ -53,6 +64,7 @@ sys.oplus.high.performance    u:object_r:exported_system_prop:s0
 
 # Radio
 ro.build.display.full_id    u:object_r:exported_system_prop:s0
+ro.build.oplus_nv_id        u:object_r:exported_system_prop:s0
 ro.sys.reserve.integrate    u:object_r:exported_system_prop:s0
 sys.oplus_boot_mode         u:object_r:exported_system_prop:s0
 sys.oplus.radio.            u:object_r:system_oplus_radio_prop:s0
