@@ -150,6 +150,7 @@ ENABLE_VENDOR_RIL_SERVICE := true
 VENDOR_SECURITY_PATCH := 2023-12-05
 
 # SEPolicy
+SELINUX_IGNORE_NEVERALLOWS := true
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 include device/oneplus/avicii/sepolicy/qti/SEPolicy.mk
 
