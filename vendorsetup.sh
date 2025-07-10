@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Copyright (C) 2024-2025 Android Open Source Project
-# Copyright (C) 2024-2025 Taher Hakim
+# Copyright (C) 2024-2025 Sreeshankar K
 
 # Color code variables
 R="\033[1;31m";
