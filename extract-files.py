@@ -98,7 +98,7 @@ blob_fixups: blob_fixups_user_type = {
     ('odm/lib64/mediadrm/libwvdrmengine.so', 'odm/lib64/libwvhidl.so'): blob_fixup()
         .add_needed('libcrypto_shim.so'),
     'product/app/PowerOffAlarm/PowerOffAlarm.apk': blob_fixup()
-        .apktool_patch('blob-patches/PowerOffAlarm.patch', '-s'),
+        .apktool_patch('blob-patches/PowerOffAlarm.patch'),
     'product/etc/sysconfig/com.android.hotwordenrollment.common.util.xml': blob_fixup()
         .regex_replace('/my_product', '/product'),
     'system_ext/framework/oplus-ims-ext.jar': blob_fixup()
