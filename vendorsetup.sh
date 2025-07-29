@@ -60,7 +60,7 @@ do
 	else
 		echo -e "${R}${NAME} not found${N}";
 		echo -e "${B}Cloning ${NAME}...${N}";
-		bash -c "git clone ${REPO} --depth=1 ${DIR}";
+		bash -c "git clone ${REPO} ${DIR}";
 		echo -e "${G}Sucessfully cloned ${NAME}${N}";
 	fi
 done;
