@@ -11,17 +11,20 @@ N="\033[0m"; # No Color
 
 # Environment variables
 SRC_DIR="${PWD}";
+
 CLANG_VERSION="r547379";
 CLANG_DIR="${SRC_DIR}/prebuilts/clang/host/linux-x86/clang-${CLANG_VERSION}";
+CLANG_TAR="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-${CLANG_VERSION}.tar.gz";
+
+FW_REPO="https://github.com/Ultimator14/firmware_oneplus_avicii.git"
+KERNEL_REPO="https://github.com/Ultimator14/android_kernel_oneplus_sm7250.git";
+VENDOR_REPO="https://github.com/Ultimator14/vendor_oneplus_avicii.git"
+APPS_REPO="https://github.com/Ultimator14/camera_oneplus_avicii.git";
+
 FW_DIR="${SRC_DIR}/vendor/oneplus/firmware";
 KERNEL_DIR="${SRC_DIR}/kernel/oneplus/sm7250";
 VENDOR_DIR="${SRC_DIR}/vendor/oneplus/avicii";
 APPS_DIR="${SRC_DIR}/vendor/oneplus/apps";
-CLANG_TAR="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-${CLANG_VERSION}.tar.gz";
-FW_REPO="https://github.com/tmhakim/firmware_oneplus_avicii";
-KERNEL_REPO="https://github.com/tmhakim/kernel_oneplus_avicii";
-VENDOR_REPO="https://github.com/tmhakim/vendor_oneplus_avicii";
-APPS_REPO="https://github.com/tmhakim/camera_oneplus_avicii";
 
 # Dependencies
 DEPENDENCIES=( "FW" "KERNEL" "VENDOR" "APPS" );
